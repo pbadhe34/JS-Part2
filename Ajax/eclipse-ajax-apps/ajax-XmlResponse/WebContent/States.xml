@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<states>
+    <north>
+        <state>UP</state>
+        <state>Bihar</state>
+        <state>Harayana</state>
+    </north>
+    <south>
+        <state>Karnataka</state>
+        <state>Kerala</state>
+        <state>TamilNadu</state>
+    </south>
+    <west>
+        <state>Maharashtra</state>
+        <state>Gujrat</state>
+        <state>Rajasthan</state>
+    </west>
+    <east>
+        <state>West Bengal</state>
+		<state>Orissa</state>
+        <state>Nagaland</state>
+        <state>Assam</state>
+    </east>
+</states>

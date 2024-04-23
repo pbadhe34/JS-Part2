@@ -1,0 +1,94 @@
+ 
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>Refreshing part of web page using Ajax</TITLE>
+<script language="Javascript">
+//Removes all content from list box
+function RemoveAll(ListBox)
+{
+  //Empty the list box
+	if (ListBox == null)
+		return;
+	ListBox.selectedIndex = -1;
+	var iListBoxLength = ListBox.options.length;
+	for (var i = 0; i < iListBoxLength; i++)
+		ListBox.options.remove(0);
+}
+
+//Get states for the given country
+function GetStates(Country)
+{
+   //Get the stateslist for selected country
+	//alert("Select  "+Country);
+	var objHTTP = new ActiveXObject("Microsoft.XMLHTTP");
+	
+	var szURL = "PostXML?SelectCountry=" + Country;   
+	 
+	var szHttpMethod = "get";
+	objHTTP.Open(szHttpMethod, szURL, false);	 
+	objHTTP.Send(null);
+
+	var szReply = objHTTP.ResponseText;
+	if (objHTTP.status != 200)
+	{
+		//failure
+		szReply = "";
+	}
+	return szReply;
+}
+
+//Display states in 'StatesList' listbox for the given country name
+function DisplayStates(StatesList, Country)
+{
+	if (StatesList == null)
+	{
+	    alert("Null Sates");
+		return;
+	}
+	StatesList.selectedIndex = -1;
+
+	RemoveAll(StatesList); 
+	var xmlStates = GetStates(Country);
+	var objXmlDom = new ActiveXObject("Microsoft.XMLDOM");
+	if (!objXmlDom.loadXML(xmlStates))
+	{
+	    var sErr = "Response XML String is messed up\n" + xmlStates;
+		alert(sErr);
+	}
+	else
+	{
+		var nodes = objXmlDom.selectNodes("/Response/State");
+		//alert("Recd" +nodes.length);
+		for (var i = 0; i < nodes.length; i++)
+		{
+			var objOption = document.createElement("option");
+			objOption.text = nodes[i].text;
+			StatesList.add(objOption);
+		}
+	}
+}
+
+</script>
+</HEAD>
+<BODY>
+<h2>Refreshing part of web page</h2>
+<p> This page shows how part of web page can be updated/refreshed without refreshing/reloading the complete web page. In this page, when you select a country it will send a HTTP request to the server to get list of states.
+    Here only the states list box is refreshed with the updated data.
+</p>
+<hr>
+<p>
+<form name="testForm">
+Country:<br>
+<select size="3" name="CountryList" OnClick="DisplayStates(StatesList, this.options[this.selectedIndex].value);" style="width:15%">
+<option value="Canada">Canada</option>
+<option value="USA">USA</option>
+<option value="India">India</option>
+</select>
+<br>States:<br>
+<select size="5" name="StatesList" style="width:15%"></select>
+</form>
+</BODY>
+</HTML>
+ 

@@ -1,0 +1,87 @@
+<html>
+<title>Update Time with AJAX!</title>
+
+<marquee>Welcome Synchronously</marquee>
+
+<body>  
+ 
+
+<script type="text/javascript">
+
+var xmlHttp;
+//Function to create XMLHttpRequest object
+function createXMLHttpRequestObject()
+{  
+ 
+		if (window.ActiveXObject)
+		 {
+		   //Microsoft IE Browser both of these
+		  //statements will work in IE.0
+		   // xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		   xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");		   
+		   return true;//indication to Jscript engine
+		 }
+		 elseif(window.XMLHttpRequest) 
+		 {
+		   //Non Microsoft Browsers such as Firefox, Safari and Opera implement it as 
+		   //a native JavaScript object.
+			xmlHttp = new XMLHttpRequest();			 
+		 }
+
+  }
+  //Call back function to handle response whenever it is received
+   function handleStateChange() 
+	{
+	   document.myForm.test.value=xmlHttp.readyState;
+
+       if(xmlHttp.readyState==4)
+        {   
+		  var sp = document.getElementById("ms");
+              var img = document.getElementById("showImage");
+              img.style.visibility="hidden"
+		  sp.innerHTML=xmlHttp.responseText;
+        }
+	}    
+   function ajaxUpdateTime()
+     { 	   
+	    //alert("Requesting Time");
+		var sp = document.getElementById("ms");
+		sp.innerHTML="Waiting for updation...";
+
+		createXMLHttpRequestObject();
+	    
+		xmlHttp.open("POST","current",true);
+		//true-Asynchronous response 
+		//false-Synchronous response 
+		xmlHttp.onreadystatechange=handleStateChange;//processing	
+
+           //make the loading image visible
+            var img = document.getElementById("showImage");
+            img.style.visibility="visible"
+
+            xmlHttp.send(null);//send the request
+		 
+    }   
+	
+	
+	</script>
+
+    <div id="showImage" style="visibility:hidden">
+     <h2>Loading the response pl. wait here..</h2>
+     <img src="image.gif" align="top" width="220" height="200"/>
+   </div>
+     
+     
+	<!--Define a form to display time with textBox-->
+	<form name="myForm">
+ 
+      <h3>Delayed Time response from server pulled by AJAX</h3>
+      <br>       
+	  <input type="button" value = "Refresh Time" onclick="ajaxUpdateTime()"/><br>
+
+	 XHR State <input type="text" name = "test" value = ""/>
+
+   </form>
+   <div id="ms">Updated Time..</div>
+ </body>
+</html> 

@@ -1,0 +1,20 @@
+
+<html>
+<head>
+ <script src="AjaxJscriptHint.js"> </script> 
+ 
+
+<title>Ajax client Getting a Hint from Server..</title>
+</head>
+
+
+<body>
+ <form> 
+ First Name:
+  <input type="text" id="txt1" onkeyup="showHint(this.value)">
+  <!--On key up call ShowHint function  by passing the current value-->
+  <!--No Submit button on this form-->
+ </form>
+ <p>Suggested names from Server : <span id="txtHint"></span></p>
+ </body>
+</html> 

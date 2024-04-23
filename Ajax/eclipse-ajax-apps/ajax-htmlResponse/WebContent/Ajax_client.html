@@ -1,0 +1,72 @@
+
+<script type="text/javascript" language="javascript">
+    
+	var httpRequest;
+
+    function makeRequest(url) 
+    {
+          if (window.XMLHttpRequest) 
+		   { 
+ 		     // Mozilla, Safari browsers ...
+             httpRequest = new XMLHttpRequest();			 
+           } 
+          else if (window.ActiveXObject) 
+		   { 
+   		      // IE browser
+            try {
+                httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                } 
+                catch (e)
+				  {
+                           try {
+                                httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                               } 
+                             catch (e) {}
+                          }
+                  }
+
+        if (!httpRequest) 
+	    {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+		//httpRequest.onreadystatechange = alertContents; 
+		httpRequest.onreadystatechange = function() 		 
+		{ 
+		  alertContents(); //on the fly (anonymous) call back function
+		
+		};
+
+        httpRequest.open('GET', url, true);
+        httpRequest.send(null);
+
+    } 
+     
+
+	function alertContents() //use global HttpRequest
+	{
+           
+       
+	     //httpRequest.setRequestHeader("Cache-Control","no-cache");
+		
+        if (httpRequest.readyState == 4) //response complete from server
+		 {
+           if (httpRequest.status == 200) //server ok signal to browser
+			{
+        	       //document.getElementById("SpanId").value=httpRequest.responseText;
+		           document.getElementById("SpanId").innerHTML = httpRequest.responseText; 	   
+                   //alert(httpRequest.responseText);//plain html/text contents
+            } 
+			else 
+			{
+                alert('There was a problem with the request.');
+            }
+        }
+
+    }
+</script>
+<span name="mySpan" id="SpanId"
+    style="cursor: pointer; text-decoration: underline"
+    onclick="makeRequest('html_response.html')">
+        Try It Here!
+</span> 

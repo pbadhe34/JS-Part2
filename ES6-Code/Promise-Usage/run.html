@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Promise Object Usage</h1>
+ 
+
+<marquee update= 2 direction="right">This text scrolls from left to right</marquee>
+
+
+<p>Wait few seconds for this page to Update.</p>
+
+<h1 id="demo"></h1>
+
+<button onclick="asyncUpdate()">Click Me</button>
+
+<button onclick="updateNow()">Try Me</button>
+
+<script> 
+
+async function asyncUpdate() {
+  console.log("Start");
+  
+  //Delayed method execution
+  await new Promise(done => setTimeout(() => done(), 10000));
+  console.log("End");
+   document.getElementById("demo").innerHTML ="At Last! after "+100
+}
+function update(){
+  
+  setTimeout(function(){ console.log("That's me"); }, 5000);
+  var delay = delay(20000);
+   //alert('updating')
+  document.getElementById("demo").innerHTML ="At Last! after "+delay
+} 
+ 
+ async function asyncUpdateWithPromise(){
+ // var delay = sleep(200000);
+  
+  //Delayed method execution
+  await new Promise(done => setTimeout(() => done(), 10000));
+  
+ const myPromise = new Promise(function(resolver, rejecter) {
+    setTimeout(function(){ resolver("I Love  You !!"); }, 3000);
+    //setTimeout(function(){ rejecter("Oh No!!"); }, 3000);
+   });
+
+  return myPromise;
+ }
+  
+ function updateNow(){   
+  
+   var prmsObj =  asyncUpdateWithPromise();
+   alert('updating now')
+
+  prmsObj.then(function(value) {
+      document.getElementById("demo").innerHTML = value;
+       }  )
+      .catch((err) => {
+    console.error(err);
+  });
+   }
+  
+ 
+</script>
+
+</body>
+</html>
+

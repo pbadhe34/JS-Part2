@@ -1,0 +1,102 @@
+ 
+<html>
+<head>
+<title>ES6 Arrow Function App</title>
+</head>
+<script type='text/javascript'>
+//ES5 function 
+var multiply = function(x,y)
+ {
+   return x * y
+ }
+
+ //ES6 Arrow functions
+/*
+y using arrow function we avoid having to type the function keyword, return keyword (it�s implicit in arrow functions), and curly brackets.*/
+
+  var multiply = (x,y) =>{ return x * y};
+
+  var num = multiply (11,11);
+ console.log(num);
+
+  var defaultParams = () => console.log('Default')
+
+  defaultParams()
+
+/*
+Curly brackets are not required if only one expression is present. 
+*/
+var multiply = (x, y) => x*y; 
+var num = multiply (10,13);
+   console.log(num);
+
+
+//Regular array filter
+function isBigEnough(element, index, array) {
+            return (element >= 10);
+         }
+    
+    var array = [12, 5, 8, 130, 44];
+    var filtered  = array.filter(isBigEnough);
+
+    console.log("Filtered Value : " + filtered ); 
+
+    //arrow function defined for filter action
+    var filtered  = array.filter(el => el >= 10);
+
+    console.log("Filtered Value : " + filtered ); 
+    var square = num => num * num;
+
+    var res = square(10);
+    console.log("Square Value : " + res ); 
+
+    //arrow function without params
+   var printTitle= () => {console.log(document.title)};
+    printTitle();
+    
+//Object literal arraow function
+
+ var setInitObj = (id, data) => ({ id: id, data: data }); 
+ 
+ var obj = (setInitObj(4, "Vinu")); 
+
+  console.log("Object is : " + JSON.stringify(obj)); 
+
+var smartPhones = [ 
+    { name: 'iphone', price: 649 }, 
+    { name: 'Galaxy S6', price: 576 }, 
+    { name: 'Galaxy Note 5', price: 489 } 
+];
+
+console.log(smartPhones.map(function (smartPhone) {
+    return smartPhone.price;
+})); 
+ 
+ //ES6 
+console.log(smartPhones.map(smartPhone => smartPhone.price));  
+
+var array = [12, 5, 8, 11, 44];
+
+var reduced = array.reduce((a, b) => a + b);//sum of array values
+console.log(reduced);
+
+var numSquared = array.map(num => {
+    var dnum = num * num
+    return dnum;
+});
+
+console.log(numSquared);
+
+/*
+Arrow functions cannot be used as constructors as other functions can. Dont use them to create similar objects as you would with other functions. If you attempt to use new with an arrow function, it will throw an error. Arrow functions, like built-in functions (aka methods), don't have a prototype property or other internal methods. Because constructors are generally used to create classlike objects in JavaScript, you should use the new ES6 classes instead.
+
+Arrow functions can't be called with new, can't be used as constructors (and therefore lack prototype as well)
+Arrow functions have their own scope, but there is no this of their own.
+No arguments object is available. You can use rest parameters however.
+
+*/
+ 
+
+
+</script>
+</html>

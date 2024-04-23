@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "compile": "tsc --sourcemap --outFile test.js test.ts",
+    "compile-user": "tsc --module system --outFile user.js User.ts,",
+    "read": "tsc --version",
+    "read2": "which tsc",
+    "build": "tsc --sourcemap --out *.ts"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5"
+  }
+}

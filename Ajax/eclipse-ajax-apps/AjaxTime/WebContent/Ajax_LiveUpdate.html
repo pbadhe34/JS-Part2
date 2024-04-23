@@ -1,0 +1,60 @@
+<html>
+<title>Update Time with AJAX!</title>
+
+<marquee>Welcome ASynchronously,The page is live!</marquee>
+
+<body onload="ajaxUpdateTime()"> 
+ 
+
+<script type="text/javascript">
+
+var xmlHttp;
+//Function to create XMLHttpRequest object
+function createXMLHttpRequestObject()
+{  
+ 
+		if (window.ActiveXObject)
+		 {
+		   //Microsoft IE Browser both of these
+		  //statements will work in IE.0
+		   // xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		   xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");		   
+		   return true;//indication to Jscript engine
+		 }
+		 elseif(window.XMLHttpRequest) 
+		 {
+		   //Non Microsoft Browsers such as Firefox, Safari and Opera implement it as 
+		   //a native JavaScript object.
+			xmlHttp = new XMLHttpRequest();			 
+		 }
+
+  }
+  //Call back function to handle response whenever it is received
+   function handleStateChange() 
+	{
+       if(xmlHttp.readyState==4)
+        {
+          document.myForm.time.value=xmlHttp.responseText;
+        }
+	}    
+   function ajaxUpdateTime()
+     { 	     
+		createXMLHttpRequestObject();
+	    xmlHttp.onreadystatechange=handleStateChange;
+		xmlHttp.open("POST","current",true);//ASynchronous response processing
+        xmlHttp.send(null);
+		//call ajaxUpdateTime function for every 1 second
+	    t=setTimeout('ajaxUpdateTime()',1000)
+    }   
+	
+	
+	</script>
+	<!--Define a form to display time with textBox-->
+	<form name="myForm">
+ 
+      <h1>Current Time by AJAX without refreshing the page!</h1>
+      <br>
+      <input type="text" name="time" size="25"/>
+   </form>
+ </body>
+</html> 

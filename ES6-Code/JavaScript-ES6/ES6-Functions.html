@@ -1,0 +1,67 @@
+ 
+
+ 
+
+<html>
+<script type='text/javascript'>
+ //Function with default params
+ function test(number1 = 5, number2 = 10) {
+    console.log("The number2 is "+number2);
+}
+
+ test();
+ test(1,5);
+ test(11);
+
+function getDefaultValue() {
+  return 10;
+}
+
+test(2,getDefaultValue());
+
+
+function multiply(first, second = first) {
+   console.log("The second param is "+second);
+
+}
+
+function add(first = second, second) {
+  console.log("The first param is "+first);
+
+}
+multiply(22);
+//add(undefined,11);
+
+/*
+Rest Parameters
+A rest parameter is simply a named parameter which is preceded by three dots(…). This named parameter becomes an array which contains rest of the parameters(i.e apart from the named parameters) passed during function call.
+Just keep in mind that there can only be one rest parameter, and it has to be the last parameter. We can’t have a named parameter after a rest parameter.
+
+The difference between a rest parameter and the ‘arguments object’ is that the latter contains all the actual parameters passed during the function call, while the ‘rest parameter’ contains only the parameters that are not named parameters and are passed during the function call.
+*/
+
+function pickProperties(object, ...properties) {
+  let result = {};
+
+  for (let i = 0, len = properties.length; i < len; i++) {
+    result[properties[i]] = object[properties[i]];
+  }
+  return result;
+}
+
+let vehicle = {
+  typeOfVehicle: 'car',
+  name: 'VANTAGE',
+  maker: 'Aston Martin',
+  color: 'grey'
+};
+
+//Use the rest parameter to get all the keys/properties to be //extracted from the passed object, which is the first parameter.
+
+let vehicleData = pickProperties(vehicle, 'typeOfVehicle', 'maker', 'color');
+console.log(vehicleData.typeOfVehicle);  
+console.log(vehicleData.maker);  
+
+
+</script>
+</html>

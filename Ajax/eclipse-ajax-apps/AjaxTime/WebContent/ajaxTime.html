@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Pull The Time from server!</title>
+</head>
+<body onload="CreateXmlHttp()"> 
+
+<script type="text/javascript">
+
+   //Global XmlHttpRequest object variable
+   var xmlHttp;   
+ 
+    function CreateXmlHttp()
+    {
+        //The client browser should suppport these syntax
+        //Function to create and configure the XMLHttpRequest object
+       //Create the XmlHttpRequest object
+	    
+   	  //For Old version of IE	     
+   	  //xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+   	  
+      // Internet Explorer newer version support
+   	  // xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+   	  
+   	  //Latest IE Browser and FireFox and Google Chrome support this syntax
+   	  
+   	  xmlHttp=new XMLHttpRequest();   	  
+   	  //Create the timer for every 1000 MiliSeconds to call ajaxUpdateTime
+   	  timer = setInterval("ajaxUpdateTime()",1000);      
+ 	      
+    }
+	function ajaxUpdateTime()
+	{ 
+       //Configure the  XmlHttpRequest object properties
+       
+       //Specify callback function name to  process the response
+       
+	   xmlHttp.onreadystatechange=handleStateChange;
+
+        //alternately Define anonymous function to process the response
+	   /*
+	   xmlHttp.onreadystatechange=function()
+	   {
+		    
+		   if(xmlHttp.readyState==4)
+	        {
+	           //Use DOM heiercahy to locate the text element
+	           //and upadte its value by server response
+	          document.myForm.time.value=xmlHttp.responseText;
+	        }
+	   };
+	   */
+
+		//Specify request method, URL to which connect/send request and sync/async mode
+	   xmlHttp.open("Post","current",false);	
+	     //Response processing - Synchronous mode: false
+	     //Response processing - Asynchronous mode : True  	
+	   	  
+	     //Send the request to server via XmlHttpRequest and process the response	
+	    xmlHttp.send(null); 	     
+	}    
+  //Call back function to handle response whenever it is received
+   function handleStateChange() 
+	{
+		
+		//Check the xmlHttp response status
+		//0-uninitialized,1-Loading,2-Loaded, 3-Interactive,4-Response Complete
+       if(xmlHttp.readyState==4)
+        {
+           //Use DOM heiercahy to locate the text element
+           //and upadte its value by server response
+          document.myForm.time.value=xmlHttp.responseText;
+        }
+	}    
+   
+     	
+	</script>
+
+	<!--Define a form to display time with textBox-->
+	<form name="myForm">
+ 
+      <h1>Current Time by AJAX without refreshing the page!</h1>
+      <br>
+      <input type="text" name="time" size="25"/>
+   </form>
+ </body>
+</html>

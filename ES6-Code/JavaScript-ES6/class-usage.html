@@ -1,0 +1,30 @@
+<html>
+<script>
+
+class Car {
+
+    /* constructor() {
+        this.maker = 'suzuki';
+        this.price = 345;
+    } */
+
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+    
+    getInfo(data) {
+        console.log(this.maker + " data : " + this.price);
+    }
+    
+}
+
+var car1 = new Car();
+car1.getInfo();
+var car2 = new Car("Audi", true);
+car2.getInfo();
+
+</script>

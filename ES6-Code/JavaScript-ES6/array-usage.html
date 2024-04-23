@@ -1,0 +1,105 @@
+ 
+
+"use strict" 
+
+<html>
+<script type='text/javascript'>
+
+/*
+An array can also be created using the Array object.
+The Array constructor can be passed as ?
+
+A numeric value that represents the size of the array or.
+
+A list of comma separated values.
+*/
+
+ var arr_names = new Array(4)  
+for(var i = 0;i<arr_names.length;i++) { 
+   arr_names[i] = i * 2 
+   console.log(arr_names[i]) 
+}
+
+console.log("The array length is "+arr_names.length);
+
+arr_names[4]=45;
+arr_names[5] = 567;
+
+console.log("The array length is "+arr_names.length);
+
+//Init the array
+alphas = ["1","2","3","4"] 
+console.log(alphas[0]); 
+console.log(alphas[1]);
+
+var alpha = ["a", "b", "c"];
+
+var numeric = [1, 2, 3];
+ var alphaNumeric = alpha.concat(numeric);
+ document.write("alphaNumeric : " + alphaNumeric ); 
+
+
+function isBigEnough(element, index, array) {
+            return (element >= 10);
+         }
+         
+   var filtered  = [12, 5, 8, 130, 44].filter(isBigEnough);
+    document.write("Filtered Value : " + filtered ); 
+
+function printBr(element, index, array) {
+            document.write("<br />[" + index + "] is " + element ); 
+         }
+         var array= [12, 5, 8, 130, 44]
+         array.forEach(printBr);
+
+         var index = [12, 5, 8, 130, 44].indexOf(8);
+         document.write("index is : " + index ); 
+         
+         var index = [12, 5, 8, 130, 44].indexOf(13);
+         document.write("<br />index is : " + index ); 
+
+var arr = new Array("First","Second","Third");
+         
+         var str = arr.join();
+         document.write("str : " + str ); 
+         
+         var str = arr.join(", ");
+         document.write("<br />str : " + str ); 
+         
+         var str = arr.join(" + ");
+         document.write("<br />str : " + str ); 
+
+         var numbers = [1, 4, 9];
+         
+         var element = numbers.pop();
+         document.write("element is : " + element ); 
+         
+         var element = numbers.pop();
+         document.write("<br />element is : " + element );
+
+          
+         var numbers = new Array(1, 4, 9);
+         
+         var length = numbers.push(10);
+         document.write("new numbers is : " + numbers ); 
+         
+         length = numbers.push(20);
+         document.write("<br />new numbers is : " + numbers ); 
+
+         var arr = [0, 1, 2, 3].reverse();
+         document.write("Reversed array is : " + arr ); 
+
+//array slice() method extracts a section of an array and returns //a new array.
+
+var arr = ["orange", "mango", "banana", "sugar", "tea"];
+         document.write("arr.slice( 1, 2) : " + arr.slice( 1, 2) ); 
+         document.write("<br />arr.slice( 1, 3) : " + arr.slice( 1, 3) ); 
+
+         var arr = new Array("orange", "mango", "banana", "sugar");
+         
+         var sorted = arr.sort();
+         document.write("Returned string is : " + sorted );
+
+
+</script>
+</html>

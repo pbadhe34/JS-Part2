@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Parsing XML Responses with DOM</title>
+    
+<script type="text/javascript">
+var xmlHttp;
+var requestType = "";
+
+function createXMLHttpRequest() {
+    if (window.ActiveXObject) {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } 
+    else if (window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();
+    }
+}
+    
+function startRequest(requestedList)
+{
+    requestType = requestedList;
+    createXMLHttpRequest();
+    xmlHttp.onreadystatechange = handleStateChange;
+	//xmlHttp.overrideMimeType("text/xml");
+	//Now url is xml document itself!! 
+    xmlHttp.open("GET", "States.xml", true);
+    
+    xmlHttp.send(null);
+}
+
+function handleStateChange()
+{
+    if(xmlHttp.readyState == 4) 
+      {        
+            if(requestType == "north")
+		    {
+                listNorthStates();
+            }
+		if(requestType == "south")
+		{
+                listSouthStates();
+        }
+            if(requestType == "all")
+		    {
+                listAllStates();
+            }         
+      }
+}
+
+    
+function handleStateChange3()
+{
+//used to handle the state changed if runninng on server side.
+    if(xmlHttp.readyState == 4) 
+      {
+        if(xmlHttp.status == 200) 
+          {
+            if(requestType == "north")
+		    {
+                listNorthStates();
+            }
+		   if(requestType == "south")
+		    {
+                listSouthStates();
+            }
+            if(requestType == "all")
+		    {
+                listAllStates();
+            }         
+        }
+}
+ 
+function listNorthStates() 
+{
+    var xmlDoc = xmlHttp.responseXML;
+    var northNode = xmlDoc.getElementsByTagName("north")[0];
+   
+    alert(northNode);
+    var out = "Northern States";
+    var northStates = northNode.getElementsByTagName("state");
+    
+    outputList("Northern States", northStates);
+}
+
+function listSouthStates()
+{
+    var xmlDoc = xmlHttp.responseXML;
+    var northNode = xmlDoc.getElementsByTagName("south")[0];
+    
+    var out = "Southern States";
+    var southStates = northNode.getElementsByTagName("state");
+    
+    outputList("Southern States", southStates);
+}
+
+function listAllStates() 
+{
+    var xmlDoc = xmlHttp.responseXML;
+	var root = xmlDoc.getElementsByTagName("states");//get the root 
+	//get the north child elements array
+    //var States = xmlDoc.getElementsByTagName("north")[0];
+    //get all the state elements
+    var allStates = xmlDoc.getElementsByTagName("state");	 
+	alert("xml response is "+xmlHttp.responseText);
+	//alert(allStates.length);
+    //alert(allStates[0].childNodes[0].nodeValue);
+    
+    outputList("All States in List", allStates);
+}
+
+function outputList(title, states) 
+{
+    var out = title;
+    var currentState = null;
+    alert(states.length);
+    for(var i = 0; i < states.length; i++)
+    {
+        currentState = states[i];
+        alert(currentState.childNodes[0].nodeValue);
+
+        out = out + "\n- " + currentState.childNodes[0].nodeValue;
+    }
+    
+    alert(out);
+}
+</script>
+</head>
+
+<body>
+    <h1>Process XML Document of List of States</h1>
+    <br/><br/>
+    <form action="#">
+        <input type="button" value="View All Listed States" onclick="startRequest('all');"/>
+        <br/><br/>
+        <input type="button" value="View All Listed Northern States" onclick="startRequest('north');"/>
+		<br/><br/>
+        <input type="button" value="View All Listed Southern States" onclick="startRequest('south');"/>
+    </form>
+</body>
+</html>
+ 

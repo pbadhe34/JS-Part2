@@ -1,0 +1,5 @@
+https://www.tutorialspoint.com/typescript/typescript_overview.htm
+https://www.guru99.com/typescript-tutorial.html
+https://appdividend.com/2022/01/21/typescript-example/
+https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+

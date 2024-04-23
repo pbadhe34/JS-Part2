@@ -1,0 +1,128 @@
+
+<html>
+<script type='text/javascript'>
+
+class Car {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+}
+
+var car1 = new Car("BMW", 100);
+car1.getInfo();
+var car2 = new Car("Audi", 150);
+car2.getInfo();
+
+</script>
+</html>
+<!--
+Class Declaration and Expression
+Since the class attribute in JavaScript is also like a function, it can also be created by using class declarations and class expressions. You can create a class using class declaration as seen below:
+
+class Car {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+}
+
+A class can also be created using a class expression. You can either create named or unnamed class expressions. A named class expression can be created as shown below:
+
+var Car = class {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+    toString() {
+        return `${this.maker} costs : ${this.price}`;
+    }
+}
+
+An unnamed class expression can be created as shown below. The name given to the class expression is local to the class body.
+
+var Car = class c {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+    toString() {
+        return `${this.maker} costs : ${this.price}`;
+    }
+}
+
+Hoisting of Class
+As shown earlier, a class can be created as both 
+a declaration and expression, however, unlike with 
+the function declaration, a class declaration does 
+not get hoisted to the top of the execution context. 
+Consider the following code:
+
+var car1 = new Car("BMW", 10); 
+// Reference Error  console.log(car1.toString());
+class Car {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+
+    getInfo() {
+        console.log(this.maker + " costs : " + this.price);
+    }
+    toString() {
+        return `${this.maker} costs : ${this.price}`;
+    }
+}
+The above code will throw a Reference Error because 
+you are trying to access a class before declaring it. 
+Therefore, we can summarize that a function declaration 
+is hoisted whereas a class declaration is not hoisted.
+
+Class Methods
+There are three types of methods in a JavaScript class:
+
+Constructor method.
+Static method.
+Prototype method.
+
+A class constructor method creates an initialize object. A class can have only one constructor method. If you try to create more than one constructor method, JavaScript will throw an exception. A constructor can be created using the keyword constructor as shown in the code below:
+
+class Car {
+    constructor(maker, price) {
+        this.maker = maker;
+        this.price = price;
+    }
+}
+JavaScript class static methods are called with the class and not with a specific object of the class. If you try to call them with the instance of the class, JavaScript will throw an exception. A static method can be created using the keyword static as shown in the listing below:
+
+class Car {
+    static count() {
+        console.log("I am static method");
+    }
+}
+Car.count();
+Car.count();
+If you try to call a static method with an instance,
+ JavaScript will throw you exception stating that the 
+ function does not exist. 
+ Also, keep in mind that a JavaScript class does not 
+ have a static property or members. 
+ As of now, it only supports static methods.
+Any normal method which is accessed using the 
+instance of the class is known as a prototype method. 
+These methods can be inherited and used with objects 
+of the class.
+
+-->

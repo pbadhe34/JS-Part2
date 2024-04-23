@@ -1,0 +1,68 @@
+<html>
+<title>Update Time with AJAX!</title>
+
+<body onload="ajaxUpdateTime()"> 
+ 
+
+<script type="text/javascript">
+
+var xmlHttp;
+//Function to craete XMLHttpRequest object
+function createXMLHttpRequestObject()
+{
+     
+       try
+        {    // Firefox, Opera, Safari   browsers
+	       xmlHttp=new XMLHttpRequest();  
+		}
+        catch (e)
+          {    // Internet Explorer old version
+		     try
+             {   
+		       xmlHttp=new ActiveXObject("Msxml2.XMLHTTP"); 
+			  }
+              catch (e)
+              {  
+			     try
+                 { 
+				    // Internet Explorer newer version
+				    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+		          }
+                 catch (e)
+                 {   
+				   alert("Your browser does not support AJAX!");				     
+				 }
+		      } 
+		} 
+
+  }
+  //Call back function to handle response whenever it is received
+   function handleStateChange() 
+	{
+       if(xmlHttp.readyState==4)
+        {
+          document.myForm.time.value=xmlHttp.responseText;
+        }
+	}    
+   function ajaxUpdateTime()
+     { 
+	    createXMLHttpRequestObject();
+	    xmlHttp.onreadystatechange=handleStateChange;
+		xmlHttp.open("POST","current",true);
+        xmlHttp.send(null); 
+		//call ajaxUpdateTime function for every 1 second
+	    t=setTimeout('ajaxUpdateTime()',1000)
+    }    
+     
+	
+	</script>
+
+	<!--Define a form to display time with textBox-->
+	<form name="myForm">
+ 
+      <h1>Current Time by AJAX without refreshing the page!</h1>
+      <br>
+      <input type="text" name="time" size="25"/>
+   </form>
+ </body>
+</html> 

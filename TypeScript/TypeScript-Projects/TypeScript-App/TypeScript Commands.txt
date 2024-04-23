@@ -1,0 +1,39 @@
+ 
+
+npm install -g typescript
+
+tsc --version
+-->Version 5.4.5
+tsc --help
+
+  tsc User.ts
+  
+  tsc --target es5 User.ts
+  
+   tsc --target es3 --ignoreDeprecations 5.0 User.ts
+   
+   tsc --module system --outFile user.js User.ts
+   
+   tsc --target es4 --ignoreDeprecations 5.0 User.ts
+   
+   tsc -p tsconfig-old.json User.ts
+
+  
+When not required globl tsc, npm uninstall -g typescript
+
+
+
+ 
+
+tsc --init  : To generate tsconfig.json
+ 
+ tsc -w usage.ts  : Run in watch mode
+tsc --noEmit usage.ts :No JS code generation
+
+tsc --noEmitOnError usage.ts :Prevent the JS code generation when error
+
+tsc --p tsconfig.json : compoile files from current dir with config 
+                        options from tsconfig.json
+
+To prevent js code generation in case of errors
+tsc --noEmitOnError usage.ts

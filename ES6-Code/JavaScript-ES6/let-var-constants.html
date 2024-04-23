@@ -1,0 +1,134 @@
+ 
+<!--
+
+The JavaScript engine treats all variable declarations using var as if they are declared at the top of a functional scope(if declared inside a function) or global scope(if declared outside of a function) regardless of where the actual declaration occurs.
+This essentially is hoisting.
+Hoisting is the default behavior in JavaScript where declarations of variables and functions are moved to the top of their respective scopes during the compilation phase. This ensures that regardless of where variables and functions are declared within a scope, they are accessible throughout that scope.and not dependent on the osition where they are declared, given the line by line interpretation nature of javascript engine.
+
+So variables might actually be available before their declaration.
+the let keyword allows the script to restrict access to the variable to the nearest enclosing block.
+
+ES6 introduced block-level scoping options to provide developers with more control and flexibility over a variables lifecycle.
+Block-level declarations are made in block/lexical scopes that are created inside a block { }.
+
+let Declarations
+This syntax is similar to var, just replace var with let to declare a variable with its scope being only that code block.
+Place your let declarations at the top in a block so they will be available within that entire block.
+
+Bindings declared using const are treated as constants, and therefore their values cannot be changed once defined. Due to this, every const declaration must be initialized at the time of declaration.
+However, the rule is a little different when it comes to objects. An object's value can be modified!
+
+"use strict" 
+
+-->
+
+
+<html>
+
+</script> 
+
+
+ 
+  <script>
+  
+  //Global/block level Functions and variables are hoisted during compilation/loading - moved to the top of the scope.
+
+  
+     var user = "Baba"
+     //Move this script block after the second script block
+  
+   </script>
+   
+<script type='text/javascript'>
+
+//Global/block level Functions and variables are hoisted during compilation/loading - moved to the top of the scope.
+
+  
+
+var flag;
+
+console.log("The  initial data is "+data);
+console.log("The  initial flag is "+flag);
+console.log("The  user from second block  is "+user);
+test();
+
+
+const userIncome = 1000
+
+const  shape = {
+    name: "triangle",
+    sides: 3
+}
+
+console.log("The  shape here  is "+shape.name);;
+//TypeError: Assignment to constant variable.
+//userIncome = 456;
+   
+
+//TypeError: Assignment to constant variable. if var removed from 'shape'
+//SyntaxError : Identifier 'shape' has already been declared  with 'var shape'
+/*
+ shape = {
+    name: "hexagon",
+    sides: 6
+}
+*/
+
+//But const object values can be modified
+shape.name = "square";
+shape.sides = 4;
+console.log("The  shape after modification  is "+shape.name);;
+
+
+function test()  
+  {
+    let x;
+    //Cannot access 'num' before initialization being 'let'strict aeccss rules
+  // console.log("The  initial let num is "+num); //Is the let variable hoisted ?
+   
+    console.log("The  initial let x is "+x); 
+   
+    console.log("The  initial var name is "+name); //undefined var but hoisted to the top of function
+   
+     let num =100 //let keyword defines strict access rules use after decalaraton only
+     var name ='ashok'
+     
+     num = true
+     
+       console.log("The  num let  is "+num);      
+     
+     x = 234
+   // console.log("The  initial shape is "+shape);
+    {
+      let x= 23;
+      // this is ok since it's a block scoped name
+      //const x = "sneaky";
+      // error, was just defined with `const` above
+      //x = "foo";
+      console.log('With local let X   '+x);
+    }
+    // this is ok since it was declared with `let`
+     x = "bar";
+     console.log('With outside let X   '+x);
+    // error, already declared above in this block
+    
+   // let x = "inner";
+     
+  }
+   // var flag = true;
+    var data = 100;
+    
+    var shape2 = "Polygon";
+ 
+   console.log("The second shape is "+shape2);
+
+
+function test()
+{
+  console.log('Test Reloaded and Redefined')
+}
+   
+ //test();
+ </script>
+
+</html>

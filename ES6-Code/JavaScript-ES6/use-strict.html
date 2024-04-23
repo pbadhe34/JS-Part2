@@ -1,0 +1,119 @@
+<html>
+<script type='text/javascript'>
+
+
+"use strict";  //Try removing this
+
+
+ alert(num); //num is hoisted! But the value is not hoisted!
+ 
+ var num = 19;
+
+  //x = 3.14;    // This will cause an error because x is not declared  /x is not defined
+
+// myData =12343334; //never allow implicit globals myData is NOT defined
+
+//delete x; // Delete of an unqualified identifier in strict mode
+
+//Cannot delete property 'num' of #<Window>
+
+//delete num  //Delete of an unqualified identifier
+
+//delete window.num; //Deleting a global variable (or object) is not allowed.
+
+ var data = 1234
+ 
+ var data = true
+
+
+test();
+
+//delete window.data ;  //not allowed in strict mode
+
+
+delete window.wuVar ; //should allow 
+
+
+function test() {
+
+ "use strict";
+ //y is not defined
+
+   //y = 3.14;   // This will also cause an error because y is not declared 
+   var name= "123";
+   console.log(name);
+   
+ //myData  = 345;  //myData is not defined
+ ////Deleting a global variable (or object) in local scope is not allowed.
+
+ //delete window.data ;  //not allowed
+ //delete name ////Delete of an unqualified identifier
+ 
+
+   
+}
+
+//Using an object, without declaring it, is not allowed:
+
+//obj = {p1:10, p2:20};      // This will cause an error
+
+//Deleting a function is not allowed.
+
+//delete test;
+
+//Duplicating a variable name is not allowed:
+
+ var data = 34
+
+//function update(a1, a1) {};   // This will cause an error in some csses
+
+//Octal numeric literals are not allowed:
+ 
+ //var x1 = 010;             // This will cause an error
+
+//Escape characters are not allowed:
+
+ //var x2 = \010;            // This will cause an error
+
+ //var x2 = "\010";     //Octal escape sequences are not allowed in strict mode
+      
+
+var x3 = "\n\n\n\t010";       //OK
+console.log(x3);
+
+//Writing to a read-only property is not allowed:
+ 
+var obj = {};
+
+Object.defineProperty(obj, "x", {value:0, writable:false});
+
+ //obj.x = 3.14;            // This will cause an error
+ 
+
+//Writing to a get-only property is not allowed:
+ 
+var obj = {get x() {return 0} };
+
+ //obj.x = 3.54;            // This will cause an error
+
+//The string "eval,for with" keywords cannot be used as a variable:
+ 
+//var for = 3.14;         // This will cause an error
+//var arguments = 3.84;    // This will cause an error, arguments  is property for function objects
+
+/*
+Future reserved keywords are not allowed as variable names or function names in strict mode.  
+
+implements
+interface
+let
+package
+private
+protected
+public
+static
+yield
+*/
+
+</script>
+</html>
